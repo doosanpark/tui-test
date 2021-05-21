@@ -27,16 +27,31 @@ function setTableCallInfo(){
     const gridCallInfo = new Grid({
         el: document.getElementById("gridCallInfoList"),
         data: prevData,
+        rowHeaders: ["rowNum", "checkbox"],
         columns: [
             {
-                header: ss,
-                name: "title",
+                header: "평가항목명1",
+                name: "evalClassify1",
             },
             {
-                header: "배점",
-                name: "score",
-                width: 100,
-                align: "center"
+                header: "평가항목명2",
+                name: "evalClassify2",
+            },
+            {
+                header: "사용여부",
+                name: "useStatus",
+            },
+            {
+                header: "최초 작성일",
+                name: "regDate",
+            },
+            {
+                header: "최종 수정일",
+                name: "updDate",
+            },
+            {
+                header: "작성자",
+                name: "writer",
             }
         ],
     })
