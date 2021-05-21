@@ -1,4 +1,3 @@
-
 const detailData = [{
     itemName: "05월 신입 자동평가",
     cnt: 10,
@@ -76,7 +75,3 @@ const gridDetail = new Grid({
         }
     }
 })
-
-function addData(){
-    
-}
