@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width='device-width', initial-scale=1.0">
+    <title>Document</title>
+    <script src="./pagination/pagination.min.js"></script>
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+    <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+    <link rel="stylesheet" href="./pagination/pagination.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div id="grid"></div>
+    <div>
+
+        항목명: <input id="itemName">
+        점수: <input id="score">
+        <button onclick = addData()>추가</button>
+
+    </div>
+    <script>
+
+        var treeData = [
+            {
+                item: "전체",
+                score: "",
+                _children: [{
+                    item: "인사",
+                    score: "",
+                    _children: [{
+                        item: "첫 응대",
+                        score: 5
+                    }, {
+                        item: "끝 응대",
+                        score: 5
+                    }]
+                }]
+            },
+        ]
+
+        
+        var Grid = tui.Grid;
+        Grid.applyTheme('clean');
+        var grid = new Grid({
+            el: document.getElementById("grid"),
+            data: treeData,
+            rowHeaders: ["rowNum", "checkbox"],
+            treeColumnOptions: {
+                name: "item"
+            },
+            pageOptions: { perPage: 10 },
+            columns: [
+                {
+                    header: "문항명",
+                    name: "item",
+                    width: "auto",
+                    sortable: true,
+                    sortingType: 'desc'
+                }, {
+                    header: "배점",
+                    name: "score",
+                    align: "center",
+                    width: 100
+                }
+            ],
+            summary: {
+                height: 40,
+                position: "bottom",
+                columnContent: {
+                    score: {
+                        template: function(valueMap){
+                            return `합계: ${valueMap.sum}`
+                        }
+                    }
+                }
+            }
+        })
+
+        grid.on('expand', ev => {
+            const { rowKey } = ev;
+            const descendantRows = grid.getDescendantRows(rowKey);
+
+            console.log('rowKey: ' + rowKey);
+            console.log('descendantRows: ' + descendantRows);
+
+            if (!descendantRows.length) {
+                grid.appendRow(
+                    {
+                        name: 'dynamic loading data',
+                        _children: [
+                            {
+                                name: 'leaf row'
+                            },
+                            {
+                                name: 'internal row',
+                                _children: []
+                            }
+                        ]
+                    },
+                    { parentRowKey: rowKey }
+                );
+            }
+        });
+
+        grid.on('collapse', ev => {
+            const { rowKey } = ev;
+            const descendantRows = grid.getDescendantRows(rowKey);
+
+            console.log('rowKey: ' + rowKey);
+            console.log('descendantRows: ' + descendantRows);
+        });
+
+        var ddata = [
+            {
+                item: "전체",
+                score: "",
+                _children: [{
+                    item: "인사",
+                    score: "",
+                    _children: [{
+                        item: "첫 응대",
+                        score: 5
+                    }, {
+                        item: "끝 응대",
+                        score: 5
+                    }]
+                }]
+            },{
+                item: "안전체",
+                score: "22"
+            }
+        ]
+
+        function addData(){
+            var itemName = $("#itemName").val();
+            var scoreVal = $("#score").val();
+
+            console.log("itemName", itemName);
+            console.log("scoreVal", scoreVal);
+
+            var newObj = {
+                item: itemName,
+                score: scoreVal
+            }
+            grid.appendRow(newObj)
+            
+        }
+
+      
+        
+
+    </script>
+
+</body>
+
+</html>

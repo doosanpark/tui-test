@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+    <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+    
+
+</head>
+<body>
+    <div id="wrapper"></div>
+
+    <script>
+        var Grid = tui.Grid;
+
+        const data = [{
+            name: '10012',
+            artist: 'Seoul',
+            type: 'deluxe',
+            release: '2016.03.26',
+            genre: 'pop',
+            price: '1000',
+            download: '1000',
+            listen: '50000',
+        },
+        {
+            name: '10012',
+            artist: 'Seoul',
+            type: 'deluxe',
+            release: '2016.03.26',
+            genre: 'pop',
+            price: '1000',
+            download: '1000',
+            listen: '50000',
+        },{
+            name: '10012',
+            artist: 'Seoul',
+            type: 'deluxe',
+            release: '2016.03.26',
+            genre: 'pop',
+            price: '1000',
+            download: '1000',
+            listen: '50000',
+        },{
+            name: '10012',
+            artist: 'Seoul',
+            type: 'deluxe',
+            release: '2016.03.26',
+            genre: 'pop',
+            price: '1000',
+            download: '1000',
+            listen: '50000',
+        },{
+            name: '10012',
+            artist: 'Seoul',
+            type: 'deluxe',
+            release: '2016.03.26',
+            genre: 'pop',
+            price: '1000',
+            download: '1000',
+            listen: '50000',
+        },];
+
+        const grid = new Grid({
+            el: document.getElementById('wrapper'),
+            data,
+            header: {
+              height: 160,
+              complexColumns: [
+                {
+                  header: 'Basic',
+                  name: 'basic',
+                  childNames: ['name', 'artist']
+                },
+                {
+                  header: 'Extra',
+                  name: 'extra',
+                  childNames: ['type', 'release', 'genre']
+                },
+                {
+                  header: 'Detail',
+                  name: 'detail',
+                  childNames: ['basic', 'extra']
+                },
+                {
+                  header: 'Count',
+                  name: 'count',
+                  childNames: ['download', 'listen']
+                },
+                {
+                  header: 'Album Info',
+                  name: 'mergeColumn5',
+                  childNames: ['price', 'detail', 'count']
+                }
+              ]
+            },
+        columns: [
+          {
+            header: 'Name',
+            name: 'name',
+            editor: 'text'
+          },
+          {
+            header: 'Artist',
+            name: 'artist'
+          },
+          {
+            header: 'Type',
+            name: 'type'
+          },
+          {
+            header: 'Release',
+            name: 'release'
+          },
+          {
+            header: 'Genre',
+            name: 'genre'
+          },
+          {
+            header: 'Price',
+            name: 'price'
+          },
+          {
+            header: 'Download',
+            name: 'download'
+          },
+          {
+            header: 'Listen',
+            name: 'listen'
+          }
+        ]
+      });
+  
+
+    </script>
+</body>
+</html>

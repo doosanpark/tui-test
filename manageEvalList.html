@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <script src="./datepicker/tui-date-picker.min.js"></script>
+    <link rel="stylesheet" href="./datepicker/tui-date-picker.min.css" />
+    <script src="./pagination/pagination.min.js"></script>
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+    <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+    <link rel="stylesheet" href="./pagination/pagination.css" />
+
+</head>
+
+<body>
+
+    
+    <div id="manageEvalList">
+        
+        <button data-toggle="modal" data-target="#modalPreview" onclick="setGridOnPreviewModal(setTable)">미리보기</button>
+        <button onclick="">복제하기</button>
+
+        <button data-toggle="modal" data-target="#modalAddData">추가</button>
+        <button onclick="saveDatas()">저장</button>
+        <button onclick="removeDatas()">삭제</button>
+        <button onclick="cancel()">취소</button>
+    </div>
+
+    <span id="evalTableDetail"></span>
+    <span id="itemList">
+        <button data-toggle="modal" data-target="#modalGetEvalItem" onclick="setGridOnCallInfoModal()">평가항목 가져오기</button>
+    </span>
+    <span id="viewList"></span>
+
+</body>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalAddData" tabindex="-1" role="dialog" 
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    평가표 구성명: <select id="evalTableCate">
+                        <option value="">Select</option>
+                        <option value="01">Domestic</option>
+                        <option value="02">Overseas</option>
+                        <option value="03">Etc</option>
+                    </select>
+                </div>
+                <div>
+                    평가표명: <input id="evalTableName">
+                </div>
+                <div>
+                    문항 수: <input id="itemCnt">
+                </div>
+                <div>
+                    총점: <input id="totalScore">
+                </div>
+                <div>
+                    사용여부:
+                    <input type="radio" name="useStatus" id="useStatus1" value="Y" checked> 예
+                    <input type="radio" name="useStatus" id="useStatus2" value="N"> 아니오
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addDataFromModal('#modalAddData')">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalPreview" tabindex="-1" role="dialog" 
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">E-음 평가표(2021년 변경기준)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="fieldEvalTablePreview">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addDataFromModal('#modalAddData')">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalGetEvalItem" tabindex="-1" role="dialog" 
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">콜 정보 목록</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="fieldCallInfoList">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addDataFromModal('#modalAddData')">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="./function/manageEvalList.js"></script>
+<script src="./function/evalTableDetail.js"></script>
+<script src="./function/itemList.js"></script>
+<script src="./function/viewList.js"></script>
+<script src="./function/evalTablePreview.js"></script>
+</html>

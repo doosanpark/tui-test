@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./datepicker/tui-date-picker.min.js"></script>
+    <link rel="stylesheet" href="./datepicker/tui-date-picker.min.css" />
+    <script src="./pagination/pagination.min.js"></script>
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+    <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+    <link rel="stylesheet" href="./pagination/pagination.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+
+</head>
+<body>
+    <div id="grid"></div>
+
+    <script>
+        var Grid = tui.Grid;
+
+        
+    const gridData = [
+      {
+        c1: '1992/03/25',
+        c2: '12/06/2019',
+        c3: '2014-04-16',
+        c4: '2019-11-19 09:00 AM',
+        c5: '2019-11-19 09:00 AM',
+        c6: '2019-01',
+        c7: '2019'
+      }
+    ];
+
+    const grid = new tui.Grid({
+      el: document.getElementById('grid'),
+      scrollX: false,
+      scrollY: false,
+      data: gridData,
+      columns: [
+        {
+          header: 'DatePicker (Default)',
+          name: 'c1',
+          editor: 'datePicker'
+        },
+        {
+          header: 'DatePicker (Using options)',
+          name: 'c2',
+          editor: {
+            type: 'datePicker',
+            options: {
+              format: 'dd/MM/yyyy'
+            }
+          }
+        },
+        {
+          header: 'DatePicker (selectableRanges)',
+          name: 'c3',
+          editor: {
+            type: 'datePicker',
+            options: {
+              selectableRanges: [[new Date(2014, 3, 10), new Date(2014, 5, 20)]]
+            }
+          }
+        },
+        {
+          header: 'Date-TimePicker',
+          name: 'c4',
+          editor: {
+            type: 'datePicker',
+            options: {
+              format: 'yyyy-MM-dd HH:mm A',
+              timepicker: true
+            }
+          }
+        },
+        {
+          header: 'Date-TimePicker With tab',
+          name: 'c5',
+          editor: {
+            type: 'datePicker',
+            options: {
+              format: 'yyyy-MM-dd HH:mm A',
+              timepicker: {
+                layoutType: 'tab',
+                inputType: 'spinbox'
+              }
+            }
+          }
+        },
+        {
+          header: 'MonthPicker',
+          name: 'c6',
+          editor: {
+            type: 'datePicker',
+            options: {
+              format: 'yyyy-MM',
+              type: 'month'
+            }
+          }
+        },
+        {
+          header: 'YearPicker',
+          name: 'c7',
+          editor: {
+            type: 'datePicker',
+            options: {
+              format: 'yyyy',
+              type: 'year'
+            }
+          }
+        }
+      ]
+    });
+  
+    </script>
+</body>
+</html>
